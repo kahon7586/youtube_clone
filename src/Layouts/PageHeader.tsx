@@ -1,15 +1,15 @@
-import { Bell, Menu, Mic, Search, Upload, User } from "lucide-react";
+import { ArrowLeft, Bell, Menu, Mic, Search, Upload, User } from "lucide-react";
 import YT_logo from "../Assets/YT_logo.png";
 import Button from "../Components/Button";
 import { useState } from "react";
 
 const PageHeader = () => {
-  const [md_showSearchBar, md_setShowSearchBar] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
     <div className="mx-4 mb-6 flex justify-between gap-10 pt-2 lg:gap-20">
       <div
-        className={`${md_showSearchBar ? "hidden" : "flex"} flex-shrink-0 items-center gap-4`}
+        className={`${showSearchBar ? "hidden md:flex" : "flex"} flex-shrink-0 items-center gap-4`}
       >
         <Button>
           <Menu />
@@ -19,8 +19,17 @@ const PageHeader = () => {
         </a>
       </div>
       <form
-        className={`${md_showSearchBar ? "flex" : "hidden"} flex-grow justify-center gap-4 md:flex `}
+        className={`${showSearchBar ? "flex" : "hidden"} flex-grow justify-center gap-4 md:flex `}
       >
+        <Button
+          className={`${showSearchBar ? "flex md:hidden" : "hidden"} flex-shrink-0`}
+          variant="ghost"
+          size="icon"
+          type="button"
+          onClick={() => setShowSearchBar(false)}
+        >
+          <ArrowLeft />
+        </Button>
         <div className="flex max-w-[600px] flex-grow">
           <input
             className="w-full rounded-l-full border border-secondary-border px-4 py-1 text-lg shadow-inner shadow-secondary outline-none focus:border-blue-500"
@@ -36,13 +45,13 @@ const PageHeader = () => {
         </Button>
       </form>
       <div
-        className={`${md_showSearchBar ? "hidden" : "flex"} flex-shrink-0 md:gap-2 `}
+        className={`${showSearchBar ? "hidden md:flex" : "flex"} flex-shrink-0 md:gap-2 `}
       >
         <Button
           className="md:hidden"
           size="icon"
           variant="ghost"
-          onClick={() => md_setShowSearchBar(true)}
+          onClick={() => setShowSearchBar(true)}
         >
           <Search />
         </Button>
