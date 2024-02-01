@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "./Button";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface CategoryPillsProps {
   categories: string[];
@@ -19,6 +19,29 @@ const CategoryPills = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (containerRef.current === null) return;
+
+    const observer = new ResizeObserver((entries) => {
+      // build a observer to observer target elements whether it changing its size and translate, if they do, execute this callback function
+
+      const container = entries[0].target;
+      if (container === undefined) return;
+
+      setIsLeftVisible(translate > 0);
+      setIsRightVisible(
+        translate + container.clientWidth < container.scrollWidth,
+        // see info about clientWidth & scrollWidth at handlerightClick function below
+      );
+    });
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [categories, translate]);
+
   const TRANSLATE_LENGTH = 200;
 
   function handleClickLeft() {
@@ -35,7 +58,6 @@ const CategoryPills = ({
     // total scrollable width of containter
     const width = containerRef.current.clientWidth;
     // current shown container width on screen
-    console.log(edge, width);
     setTranslate((currTranslate) => {
       const newTranslate = currTranslate + TRANSLATE_LENGTH;
       if (newTranslate >= edge - width) {
