@@ -12,6 +12,11 @@ const buttonStyles = cva(["transition-colors"], {
       // we design two options to implement: variant(for colors) and size(for shape)
       default: ["bg-secondary", "hover:bg-secondary-hover"],
       ghost: ["hover:bg-gray-100"], // pattern with no default bg
+      dark: [
+        "bg-secondary-dark",
+        "hover:bg-secondary-dark-hover",
+        "text-secondary",
+      ],
     },
     size: {
       default: ["rounded", "p-2"],
