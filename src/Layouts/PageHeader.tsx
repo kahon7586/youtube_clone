@@ -18,6 +18,7 @@ const PageHeader = () => {
           <img className="h-6" src={YT_logo} />
         </a>
       </div>
+
       <form
         className={`${showSearchBar ? "flex" : "hidden"} flex-grow justify-center gap-4 md:flex `}
       >
@@ -44,6 +45,7 @@ const PageHeader = () => {
           <Mic />
         </Button>
       </form>
+
       <div
         className={`${showSearchBar ? "hidden md:flex" : "flex"} flex-shrink-0 md:gap-2 `}
       >
