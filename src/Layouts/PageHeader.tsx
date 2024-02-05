@@ -1,23 +1,15 @@
 import { ArrowLeft, Bell, Menu, Mic, Search, Upload, User } from "lucide-react";
-import YT_logo from "../Assets/YT_logo.png";
+
 import Button from "../Components/Button";
 import { useState } from "react";
+import HeaderFirstSection from "../Components/HeaderFirstSection";
 
 const PageHeader = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
     <div className="mx-4 mb-6 flex justify-between gap-10 pt-2 lg:gap-20">
-      <div
-        className={`${showSearchBar ? "hidden md:flex" : "flex"} flex-shrink-0 items-center gap-4`}
-      >
-        <Button>
-          <Menu />
-        </Button>
-        <a href="/">
-          <img className="h-6" src={YT_logo} />
-        </a>
-      </div>
+      <HeaderFirstSection hidden={showSearchBar} />
 
       <form
         className={`${showSearchBar ? "flex" : "hidden"} flex-grow justify-center gap-4 md:flex `}
