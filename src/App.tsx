@@ -4,6 +4,7 @@ import CategoryPills from "./Components/CategoryPills";
 import { categories, videos } from "./Data/home";
 import PageHeader from "./Layouts/PageHeader";
 import VideoGridItem from "./Components/VideoGridItem";
+import Sidebar from "./Layouts/Sidebar";
 
 function App() {
   const [selectedCategory, setSelectCategory] = useState(categories[0]);
@@ -12,7 +13,7 @@ function App() {
     <div className="flex max-h-screen flex-col">
       <PageHeader />
       <div className="flex-grow-1 grid grid-cols-[auto,1fr] overflow-auto">
-        <div>SideBar</div>
+        <Sidebar />
         <div className="overflow-x-hidden px-8 pb-4">
           <div className="sticky top-0 z-10 bg-white pb-4">
             <CategoryPills
